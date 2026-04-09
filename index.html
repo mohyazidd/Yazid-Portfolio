@@ -12,6 +12,57 @@
 
     <style>
 
+        /* --- Contact Section --- */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    width: 100%;
+}
+
+.contact-info h3 { font-size: 2rem; margin-bottom: 20px; }
+.contact-info p { color: var(--text-dim); margin-bottom: 30px; }
+
+.contact-details { display: flex; flex-direction: column; gap: 20px; }
+.contact-item { display: flex; align-items: center; gap: 15px; color: var(--text-white); text-decoration: none; }
+.contact-item i { font-size: 1.2rem; color: var(--text-dim); }
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    background: var(--card-gray);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: #fff;
+    outline: none;
+    transition: 0.3s;
+}
+
+.contact-form input:focus, .contact-form textarea:focus { border-color: #444; }
+
+.btn-send {
+    padding: 15px;
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-send:hover { transform: scale(1.02); background: #eee; }
+
+@media (max-width: 768px) {
+    .contact-container { grid-template-columns: 1fr; }
+}
+
         /* Styling dasar link navigasi */
 .nav-links a {
     position: relative;
@@ -251,12 +302,12 @@ body.hover-active .cursor-outline {
     <nav>
         <div class="logo">My Portfolio</div>
         <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-        </div>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a> </div>
     </nav>
 
     <section id="home" class="hero">
@@ -400,6 +451,42 @@ body.hover-active .cursor-outline {
             </div>
         </div>
     </section>
+
+    <section id="contact">
+    <div class="section-header" data-aos="fade-up">
+        <h2>Get In Touch</h2>
+        <p>Feel free to reach out for collaborations or just a friendly hello!</p>
+    </div>
+    
+    <div class="contact-container">
+        <div class="contact-info" data-aos="fade-right">
+            <h3>Let's talk about everything!</h3>
+            <p>Don't like forms? Send me an email or message me on my social media.</p>
+            
+            <div class="contact-details">
+                <a href="mailto:muhyazid2705@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    muhyazid2705@gmail.com
+                </a>
+                <a href="#" class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    +62 823-9219-3826
+                </a>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Batam, Indonesia
+                </div>
+            </div>
+        </div>
+
+        <form class="contact-form" data-aos="fade-left">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn-send">Send Message</button>
+        </form>
+    </div>
+</section>
 
     <footer>
         <p>&copy; 2026 Mohammad Yazid. Built with Focus, Discipline, and Result.</p>
