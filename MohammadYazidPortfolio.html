@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammad Yazid | Portofolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />q20
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
+
+    <style>
+
+        /* Styling dasar link navigasi */
+.nav-links a {
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s;
+}
+
+/* Membuat garis bawah yang tidak terlihat dulu */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--text-white); /* Warna garis */
+    transition: width 0.3s ease;
+}
+
+/* Class 'active' yang akan memunculkan garis */
+.nav-links a.active {
+    color: var(--text-white) !important;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
+        /* Sembunyikan kursor asli */
+body {
+    cursor: none;
+}
+
+/* Lingkaran titik tengah */
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-white);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 10000;
+    pointer-events: none;
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+/* Lingkaran luar yang mengejar */
+.cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--text-white);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    transition: transform 0.1s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+}
+
+/* Efek saat menyentuh link atau tombol */
+body.hover-active .cursor-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #acb6c27d; 
+}
+
+body.hover-active .cursor-outline {
+    width: 50px;
+    height: 50px;
+    border-color: #acb6c27d;
+}
+
+        :root {
+            --bg-black: #000000;
+            --card-gray: #0a0a0a;
+            --text-white: #ffffff;
+            --text-dim: #999999;
+            --border-color: #1a1a1a;
+            --accent: #ffffff;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Navbar --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 10%; position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: 1px; }
+
+        .nav-links a {
+            color: var(--text-dim); text-decoration: none; margin-left: 2rem;
+            font-size: 0.85rem; transition: 0.3s; font-weight: 500;
+        }
+        .nav-links a:hover { color: var(--text-white); }
+
+        /* --- Full Page Section Styling --- */
+        section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 10%;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-header { margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.8rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
+        .section-header p { color: var(--text-dim); font-size: 1rem; max-width: 600px; }
+
+        /* --- Hero Section --- */
+        .hero { flex-direction: row; justify-content: space-between; align-items: center; gap: 40px; }
+        .hero-text { flex: 1; }
+        .hero-text h1 { font-size: 4.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1; letter-spacing: -2px; }
+        .hero-text p { color: var(--text-dim); max-width: 500px; margin-bottom: 2.5rem; font-size: 1.1rem; }
+
+        .hero-footer { display: flex; align-items: center; gap: 30px; }
+        .btn-cv {
+            padding: 14px 28px; background: #fff; color: #000;
+            border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s;
+        }
+        .btn-cv:hover { transform: scale(1.05); }
+
+        .social-icons { display: flex; gap: 20px; font-size: 1.4rem; }
+        .social-icons a { color: var(--text-white); transition: 0.3s; opacity: 0.6; }
+        .social-icons a:hover { opacity: 1; transform: translateY(-3px); }
+
+        .hero-img img {
+            width: 400px; height: 500px; border-radius: 30px; object-fit: cover;
+            filter: grayscale(100%); border: 1px solid var(--border-color);
+            transition: 0.5s ease;
+        }
+        .hero-img img:hover { filter: grayscale(0%); border-color: #444; }
+
+        /* --- Marquee (Services & Skills) --- */
+        .marquee-wrapper { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; overflow: hidden; padding: 20px 0; }
+        .marquee-content { display: flex; animation: scroll 35s linear infinite; gap: 20px; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        .card {
+            min-width: 350px; background: var(--card-gray);
+            padding: 45px; border-radius: 24px; border: 1px solid var(--border-color);
+        }
+        .card h3 { margin-bottom: 15px; font-size: 1.4rem; font-weight: 600; }
+        .card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
+
+        .marquee-wrapper {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+ }
+
+.marquee-content {
+    display: flex;
+    gap: 20px; /* Jarak antar kartu */
+    animation: scroll 20s linear infinite; /* Atur durasi sesuai keinginan */
+    width: max-content; /* Sangat penting agar lebar otomatis mengikuti konten */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Geser tepat setengah dari total lebar konten duplikasi */
+        transform: translateX(calc(-50% - 10px)); 
+    }
+}
+
+/* Biar halus saat kursor diarahkan, animasi berhenti sejenak */
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+        /* --- About Grid --- */
+        .grid-container {
+            display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; width: 100%;
+        }
+        .about-main { background: var(--card-gray); padding: 50px; border-radius: 30px; border: 1px solid var(--border-color); }
+        .about-main p { color: var(--text-dim); font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; }
+        
+        .bento-data { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .data-box { background: var(--card-gray); padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); text-align: center; }
+        .data-box h4 { font-size: 2.2rem; margin-bottom: 5px; color: #fff; }
+        .data-box p { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); }
+
+        /* --- Projects --- */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; width: 100%; }
+        .project-card {
+            background: var(--card-gray); border-radius: 24px; border: 1px solid var(--border-color);
+            overflow: hidden; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .project-card:hover { transform: translateY(-12px); border-color: #333; }
+        .p-img { width: 100%; height: 220px; background: #111; overflow: hidden; }
+        .p-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        .p-content { padding: 30px; }
+        .p-content h3 { margin-bottom: 12px; font-size: 1.3rem; }
+        .p-content p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px; }
+        .p-link { font-size: 0.85rem; color: #fff; text-decoration: none; border-bottom: 1px solid #fff; padding-bottom: 4px; }
+
+        footer { text-align: center; padding: 60px; color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid var(--border-color); }
+
+        @media (max-width: 1024px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 150px; }
+            .hero-text h1 { font-size: 3rem; }
+            .hero-footer { justify-content: center; }
+            .grid-container { grid-template-columns: 1fr; }
+            .hero-img img { width: 320px; height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
+
+    <nav>
+        <div class="logo">My Portfolio</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-text" data-aos="fade-right">
+            <p style="letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 15px; opacity: 0.7;">HI, I AM MOHAMMAD YAZID</p>
+            <h1>Software Developer</h1>
+            <p>Hello everyone, I’m a student focused on Flutter app development who wants to delve deeper into the world of cybersecurity.</p>
+            <div class="hero-footer">
+               <a href="Profesional%20CV%20.pdf" download="CV Mohammad Yazid" class="btn-cv">Download CV</a>
+                <div class="social-icons">
+                    <a href="https://github.com/mohyazidd" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/mohammad-yazid-8ba4a7341/?skipRedirect=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-img" data-aos="zoom-in" data-aos-delay="200">
+            <img src="me3.jpg" alt="Yazid">
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-header" data-aos="fade-up">
+            <h2>About Me</h2>
+            <p>A brief introduction to myself.</p>
+        </div>
+        <div class="grid-container">
+            <div class="about-main" data-aos="fade-up">
+                <p>Hello everyone, my name is Mohammad Yazid, a student with a passion for technology. For me, technology is a tool for creating solutions, while discipline is the key to achieving them.</p>
+                <p>I am committed to holistic self-development and preparing myself for the future <strong> so that I can be a valuable person in any field </strong> without giving up my previous passion in the field of IT.</p>
+            </div>
+            <div class="bento-data" data-aos="fade-left">
+                <div class="data-box"><h4>17</h4><p>Current Age</p></div>
+                <div class="data-box"><h4>2008</h4><p>Birth Year</p></div>
+                <div class="data-box"><h4>Batam</h4><p>Origin Location</p></div>
+                <div class="data-box"><h4>100%</h4><p>Discipline</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Services</h2>
+            <p>A brief overview of the services I provide.</p>
+        </div>
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <div class="card"><h3>Flutter Dev</h3><p>Building cross-platform mobile apps (Android/iOS) using the Flutter framework and Dart.</p></div>
+                <div class="card"><h3>UI/UX Website Design</h3><p>Designing clean, modern, and functional user interfaces for contemporary applications.</p></div>
+                <div class="card"><h3>UI/UX Mobile Design</h3><p>Designing clean, modern, and functional user interfaces for contemporary applications.</p></div>
+                <div class="card"><h3>UI/UX Game Design</h3><p>Designing clean, modern, and functional user interfaces for contemporary applications.</p></div>
+                <div class="card"><h3>Problem Solving</h3><p>Analyzing programming logic in depth to solve technical problems efficiently.</p></div>
+                <div class="card"><h3>Flutter Dev</h3><p>Building cross-platform mobile apps (Android/iOS) using the Flutter framework and Dart.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Technical Skills</h2>
+            <p>A collection of technologies and tools I use in software development.</p>
+        </div>
+        <div class="marquee-wrapper">
+    <div class="marquee-content" style="animation-direction: reverse;">
+        <div class="card" style="min-width: 200px; text-align: center; padding: 30px;"><h3>Dart</h3></div>
+        <div class="card" style="min-width: 200px; text-align: center; padding: 30px;"><h3>Flutter</h3></div>
+        <div class="card" style="min-width: 200px; text-align: center; padding: 30px;"><h3>Linux</h3></div>
+        <div class="card" style="min-width: 200px; text-align: center; padding: 30px;"><h3>Networking</h3></div>
+        <div class="card" style="min-width: 200px; text-align: center; padding: 30px;"><h3>Git</h3></div>
+        <div class="card" style="min-width: 200px; text-align: center; padding: 30px;"><h3>Firebase</h3></div>
+        
+        <div class="card" style="min-width: 200px; text-align: center; padding: 30px;"><h3>Dart</h3></div>
+        <div class="card" style="min-width: 200px; text-align: center; padding: 30px;"><h3>Flutter</h3></div>
+        <div class="card" style="min-width: 200px; text-align: center; padding: 30px;"><h3>Linux</h3></div>
+        <div class="card" style="min-width: 200px; text-align: center; padding: 30px;"><h3>Networking</h3></div>
+        <div class="card" style="min-width: 200px; text-align: center; padding: 30px;"><h3>Git</h3></div>
+        <div class="card" style="min-width: 200px; text-align: center; padding: 30px;"><h3>Firebase</h3></div>
+    </div>
+</div>       
+            </div>
+        </div>
+    </section>
+
+
+    <section id="projects">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Featured Projects</h2>
+            <p>The projects and simulations I have worked on.</p>
+        </div>
+        <div class="project-grid">
+            <div class="project-card" data-aos="fade-up">
+                <div class="p-img"><img src="Mockup e-commerce app.png" alt="P1"></div>
+                <div class="p-content">
+                    <h3>Shopping App</h3>
+                    <p>A cross-platform mobile app built with Flutter and Firebase for personal finance tracking.</p>
+                    <a href="#" class="p-link">View Case Study</a>
+                </div>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="p-img"><img src="Application Mobile Mockup schedule app.png" alt="P2"></div>
+                <div class="p-content">
+                    <h3>Schedule App</h3>
+                    <p>A simple network penetration simulation in a virtual lab environment for security education.</p>
+                    <a href="#" class="p-link">View Case Study</a>
+                </div>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="p-img"><img src="mockup news app.png" alt="P3"></div>
+                <div class="p-content">
+                    <h3>News App</h3>
+                    <p>My own interactive portfolio website, designed with a focus on performance and minimalistic visuals.</p>
+                    <a href="#" class="p-link">View Case Study</a>
+                </div>
+            </div>
+        </div>
+         <div class="project-grid">
+            <div class="project-card" data-aos="fade-up">
+                <div class="p-img"><img src="mock up it project e-library.png" alt="P4"></div>
+                <div class="p-content">
+                    <h3>E-Library Website</h3>
+                    <p>A cross-platform mobile app built with Flutter and Firebase for personal finance tracking.</p>
+                    <a href="#" class="p-link">View Case Study</a>
+                </div>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="p-img"><img src="Mockup twiiahh.png" alt="P5"></div>
+                <div class="p-content">
+                    <h3>Twiiahh Website</h3>
+                    <p>A simple network penetration simulation in a virtual lab environment for security education.</p>
+                    <a href="#" class="p-link">View Case Study</a>
+                </div>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="p-img"><img src="mockup payroll project.png" alt="P6"></div>
+                <div class="p-content">
+                    <h3>Payroll Website</h3>
+                    <p>My own interactive portfolio website, designed with a focus on performance and minimalistic visuals.</p>
+                    <a href="#" class="p-link">View Case Study</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mohammad Yazid. Built with Focus, Discipline, and Result.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: false });
+        
+    </script>
+    <script>
+    const cursorDot = document.querySelector(".cursor-dot");
+    const cursorOutline = document.querySelector(".cursor-outline");
+
+    window.addEventListener("mousemove", function (e) {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        // Titik kecil mengikuti kursor secara instant
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+
+        // Lingkaran luar mengikuti dengan sedikit delay agar halus
+        cursorOutline.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+        }, { duration: 500, fill: "forwards" });
+    });
+
+    // Tambahkan efek membesar saat melewati link/tombol
+    const links = document.querySelectorAll("a, button, .project-card, .card");
+    links.forEach(link => {
+        link.addEventListener("mouseenter", () => document.body.classList.add("hover-active"));
+        link.addEventListener("mouseleave", () => document.body.classList.remove("hover-active"));
+    });
+</script>
+<script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-links a");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            // Logika deteksi posisi scroll
+            if (pageYOffset >= sectionTop - 150) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach((a) => {
+            a.classList.remove("active");
+            if (a.getAttribute("href").includes(current)) {
+                a.classList.add("active");
+            }
+        });
+    });
+</script>
+</body>
+</html>
